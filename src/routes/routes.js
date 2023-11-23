@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const bcryptjs = require("bcryptjs");
 const connection = require("../conexion/bd_conexion.jsx");
+//
 
 router.post("/login", async (req, res) => {
   const { user, clave } = req.body;
