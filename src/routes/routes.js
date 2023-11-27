@@ -1,15 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const bcryptjs = require("bcryptjs");
-const connection = require("../conexion/bd_conexion.jsx");
-//
+const connection9 = require("../conexion/bd_1_conexion");
+const connection4 = require("../conexion/bd_4_conexion");
+// const connection = require("../conexion/bd_conexion.jsx");
 
+//Consultas en la base de datos 9
 router.post("/login", async (req, res) => {
   const { user, clave } = req.body;
 
   try {
     const results = await new Promise((resolve, reject) => {
-      connection.query(
+      connection9.query(
         "SELECT * FROM users WHERE user = ?",
         // "SELECT * FROM users WHERE user = ? AND clave = ?",
         [user],
@@ -46,6 +48,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//Cosultas en la base de datos 4
 router.post("/register", async (req, res) => {
   const user = req.body.user;
   const firstname = req.body.firstname;
@@ -75,7 +78,7 @@ router.post("/register", async (req, res) => {
   const date_added = `${anio}-${mes}-${dia}`;
 
   //INSERT INTO TABLA PERFIL
-  connection.query(
+  connection4.query(
     "INSERT INTO perfil set ?",
     {
       nombre_comercial: nombre_empresa,
@@ -106,7 +109,7 @@ router.post("/register", async (req, res) => {
   const sql = `SELECT id_perfil FROM perfil WHERE email = ? AND nombre_comercial = ? AND rubro = ?`;
   // Variable para almacenar el resultado
   let empresaId;
-  connection.query(
+  connection4.query(
     sql,
     [user, nombre_empresa, rubro],
     (error, results, fields) => {
@@ -120,7 +123,7 @@ router.post("/register", async (req, res) => {
             if (error) {
               console.log(error);
             } else {
-              connection.query(
+              connection4.query(
                 "INSERT INTO users SET ?",
                 {
                   user,
@@ -149,7 +152,7 @@ router.post("/register", async (req, res) => {
           const segundos = fechaActual.getSeconds();
           const date_added = `${anio}-${mes}-${dia} ${hora}:${minutos}:${segundos}`;
 
-          connection.query(
+          connection4.query(
             "INSERT INTO almacen SET ?",
             {
               nombre: nombre_almacen,
@@ -173,7 +176,7 @@ router.post("/register", async (req, res) => {
   );
 
   // Hacer la consulta SQL para obtener las categorías desde tu base de datos
-  connection.query("SELECT * FROM rubro_empresa", (error, results, fields) => {
+  connection4.query("SELECT * FROM rubro_empresa", (error, results, fields) => {
     if (error) {
       console.error("Error al ejecutar la consulta: ", error);
       return;
