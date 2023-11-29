@@ -3,6 +3,8 @@ const router = express.Router();
 const bcryptjs = require("bcryptjs");
 const connection9 = require("../conexion/bd_1_conexion");
 const connection4 = require("../conexion/bd_4_conexion");
+const connection1 = require("../conexion/bd_1_conexion");
+const connectionDB = require("../conexion/bd_conexion");
 // const connection = require("../conexion/bd_conexion.jsx");
 
 //Consultas en la base de datos 1
@@ -197,46 +199,47 @@ router.post("/register", async (req, res) => {
   });
 });
 
-// router.post("/m", async (req, res) => {
-//   // const { user, clave } = req.body;
+router.post("/m", async (req, res) => {
+  // const { user, clave } = req.body;
 
-//   try {
-//     const results = await new Promise((resolve, reject) => {
-//       connection9.query(
-//         "SELECT * FROM data-base",
-//         // "SELECT * FROM users WHERE user = ? AND clave = ?",
-//         null,
-//         function (err, results) {
-//           // if (err) {
-//           //   reject(err);
-//           // } else {
-//           //   resolve(results);
-//           // }
-//           console.log(results);
-//         }
-//       );
-//     });
+  try {
+    const results = await new Promise((resolve, reject) => {
+      connectionDB(9).query(
+        // connection4.query(
+        "SELECT * FROM base_datos",
+        // "SELECT * FROM users WHERE user = ? AND clave = ?",
+        null,
+        function (err, results) {
+          // if (err) {
+          //   reject(err);
+          // } else {
+          //   resolve(results);
+          // }
+          console.log(results);
+        }
+      );
+    });
 
-//     // return res.status(200).json(results);
+    // return res.status(200).json(results);
 
-//     if (results.length === 0) return res.status(200).json({ userExist: false });
+    if (results.length === 0) return res.status(200).json({ userExist: false });
 
-//     const passwordIsCorrect = await new Promise((resolve, reject) => {
-//       bcryptjs.compare(clave, results[0].clave, (err, result) => {
-//         if (err) reject(err);
-//         else resolve(result);
-//       });
-//     });
+    const passwordIsCorrect = await new Promise((resolve, reject) => {
+      bcryptjs.compare(clave, results[0].clave, (err, result) => {
+        if (err) reject(err);
+        else resolve(result);
+      });
+    });
 
-//     //Responde con informacón que determina si existe un usuario y clave
-//     res
-//       .status(200)
-//       .json({ userExist: results.length !== 0, passwordIsCorrect });
-//   } catch (error) {
-//     console.error("Error en la consulta a la base de datos:", error);
-//     res.status(500).json({
-//       error: "Hubo un error en la consulta a la base de datos",
-//     });
-//   }
-// });
+    //Responde con informacón que determina si existe un usuario y clave
+    res
+      .status(200)
+      .json({ userExist: results.length !== 0, passwordIsCorrect });
+  } catch (error) {
+    console.error("Error en la consulta a la base de datos:", error);
+    res.status(500).json({
+      error: "Hubo un error en la consulta a la base de datos",
+    });
+  }
+});
 module.exports = router;
