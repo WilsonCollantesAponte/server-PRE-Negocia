@@ -38,6 +38,7 @@ async function login(req, res) {
       passwordIsCorrect,
       userData: results[0]
     });
+    return; // O res.end();
   } catch (error) {
     console.error("Error en la consulta a la base de datos:", error);
     res.status(500).json({
