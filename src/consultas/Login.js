@@ -5,14 +5,38 @@ async function login(req, res) {
   const { user, clave } = req.body;
 
   try {
+
     const results = await bd_conexion(1).query("SELECT * FROM users WHERE user = ?", [user]);
 
+   /* const results = await new Promise((resolve, reject) => {
+      bd_conexion(1).query(
+        "SELECT * FROM users WHERE user = ?",
+        [user],
+        function (err, results) {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(results);
+          }
+        }
+      );
+    });
+*/
+
     if (results.length === 0) {
-      return res.status(200).json({ userExist: false, message: "Usuario no encontrado" });
-    }
+        return res.status(200).json({ userExist: false, message: "Usuario no encontrado" });
+      }
+   
+      const passwordIsCorrect = await bcryptjs.compare(clave, results[0].clave);
 
-    const passwordIsCorrect = await bcryptjs.compare(clave, results[0].clave);
-
+   /*
+      const passwordIsCorrect = await new Promise((resolve, reject) => {
+      bcryptjs.compare(clave, results[0].clave, (err, result) => {
+        if (err) reject(err);
+        else resolve(result);
+      });
+    });
+*/
     res.status(200).json({
       userExist: results.length !== 0,
       passwordIsCorrect,
@@ -27,10 +51,10 @@ async function login(req, res) {
   } finally {
     // Cerrar la conexión a la base de datos aquí
     bd_conexion(1).end();
-  }
 
-  // Asegurarse de que la respuesta se haya enviado antes de finalizar la función
-  res.end();
+    // Asegurarse de que la respuesta se haya enviado antes de finalizar la función
+   // res.end();
+  }
 }
 
 module.exports = login;
