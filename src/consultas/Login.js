@@ -19,16 +19,23 @@ try {
       );
     });
   
-    if (results.length === 0) return res.status(200).json({ userExist: false });
-  
-    const passwordIsCorrect = await new Promise((resolve, reject) => {
-      bcryptjs.compare(clave, results[0].clave, (err, result) => {
-        if (err) reject(err);
-        else resolve(result);
+    if (results.length === 0) {
+        return res.status(200).json({ userExist: false });
+      }
+      
+      const passwordIsCorrect = await new Promise((resolve, reject) => {
+        bcryptjs.compare(clave, results[0].clave, (err, result) => {
+          if (err) reject(err);
+          else resolve(result);
+        });
       });
-    });
-  
-    res.status(200).json({ userExist: results.length !== 0, passwordIsCorrect,  userData: results[0] });
+      
+      if (passwordIsCorrect) {
+        res.status(200).json({ userExist: true, passwordIsCorrect,  userData: results[0] });
+      } else {
+        res.status(200).json({ userExist: true, passwordIsCorrect: false });
+      }
+      
   } catch (error) {
     console.error("Error en la consulta a la base de datos:", error);
     res.status(500).json({
