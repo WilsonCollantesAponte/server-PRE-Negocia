@@ -19,15 +19,20 @@ async function login(req, res) {
       );
     });
 
-    if (results.length === 0) return res.status(200).json({ userExist: false });
+    if (results.length === 0) {
+        return res.status(200).json({ userExist: false, message: "Usuario no encontrado" });
+      }
+   
+      const passwordIsCorrect = await bcryptjs.compare(clave, results[0].clave);
 
-    const passwordIsCorrect = await new Promise((resolve, reject) => {
+   /*
+      const passwordIsCorrect = await new Promise((resolve, reject) => {
       bcryptjs.compare(clave, results[0].clave, (err, result) => {
         if (err) reject(err);
         else resolve(result);
       });
     });
-
+*/
     res.status(200).json({
       userExist: results.length !== 0,
       passwordIsCorrect,
@@ -38,7 +43,6 @@ async function login(req, res) {
     res.status(500).json({
       error: "Hubo un error en la consulta a la base de datos",
     });
-    res.status(401).json({ userExist: false });
   }
 }
 
