@@ -32,9 +32,13 @@ async function register(req, res) {
   const anio = fechaActual.getFullYear();
   const date_added = `${anio}-${mes}-${dia}`;
 
+    //PONER EN VARIABLE LA CONEXION - CLOSE
+    const con_uno = bd_conexion(1);
+    const con_cuatro = bd_conexion(4);
+
   // INSERT INTO TABLA PERFIL
   // Para la base de datos 1
-  bd_conexion(1).query(
+  con_uno.query(
     "INSERT INTO perfil set ?",
     {
       nombre_comercial: nombre_empresa,
@@ -63,7 +67,7 @@ async function register(req, res) {
   );
 
   // Para la base de datos 4
-  bd_conexion(4).query(
+  con_cuatro.query(
     "INSERT INTO perfil set ?",
     {
       nombre_comercial: nombre_empresa,
@@ -97,7 +101,7 @@ async function register(req, res) {
   let empresaId;
 
   // Para la base de datos 1
-  bd_conexion(1).query(
+  con_uno.query(
     sql,
     [user, nombre_empresa, rubro],
     (error, results, fields) => {
@@ -111,7 +115,7 @@ async function register(req, res) {
              
                 console.log(error);
             } else {
-              bd_conexion(1).query(
+              con_uno.query(
                 "INSERT INTO users SET ?",
                 {
                   user,
@@ -140,7 +144,7 @@ async function register(req, res) {
           const segundos = fechaActual.getSeconds();
           const date_added = `${anio}-${mes}-${dia} ${hora}:${minutos}:${segundos}`;
 
-          bd_conexion(1).query(
+          con_uno.query(
             "INSERT INTO almacen SET ?",
             {
               nombre: nombre_almacen,
@@ -164,7 +168,7 @@ async function register(req, res) {
   );
 
   // Para la base de datos 4
-  bd_conexion(4).query(
+  con_cuatro.query(
     sql,
     [user, nombre_empresa, rubro],
     (error, results, fields) => {
@@ -177,7 +181,7 @@ async function register(req, res) {
             if (error) {
               console.log(error);
             } else {
-              bd_conexion(4).query(
+              con_cuatro.query(
                 "INSERT INTO users SET ?",
                 {
                   user,
@@ -206,7 +210,7 @@ async function register(req, res) {
           const segundos = fechaActual.getSeconds();
           const date_added = `${anio}-${mes}-${dia} ${hora}:${minutos}:${segundos}`;
 
-          bd_conexion(4).query(
+          con_cuatro.query(
             "INSERT INTO almacen SET ?",
             {
               nombre: nombre_almacen,
@@ -230,7 +234,7 @@ async function register(req, res) {
   );
 
   // Hacer la consulta SQL para obtener las categorías desde tu base de datos
-  bd_conexion(1).query(
+  con_uno.query(
     "SELECT * FROM rubro_empresa",
     (error, results, fields) => {
       if (error) {
@@ -250,6 +254,9 @@ async function register(req, res) {
         ruta: "/login",
         rubro: result_datos,
       });
+    // Cerrar la conexión después de que todas las operaciones hayan concluido
+    con_uno.end();
+    con_cuatro.end();
     }
   );
 }
