@@ -46,11 +46,11 @@ async function login(req, res) {
   } catch (error) {
     console.error("Error en la consulta a la base de datos:", error);
     res.status(500).json({
-      error: "Hubo un error en la consulta a la base de datos",
+      error: "Hubo un error en la consulta a la base de datos", error
     });
   } finally {
     // Cerrar la conexión a la base de datos aquí
-    bd_conexion(1).end();
+    bd_conexion(1).close();
 
     // Asegurarse de que la respuesta se haya enviado antes de finalizar la función
    // res.end();

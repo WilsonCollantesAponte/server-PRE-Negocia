@@ -28,6 +28,12 @@ async function sucursales(req, res) {
     res.status(500).json({
       error: "Hubo un error en la consulta a la base de datos",
     });
+  }finally {
+    // Cerrar la conexión a la base de datos aquí
+    bd_conexion([id_empresa]).close();
+
+    // Asegurarse de que la respuesta se haya enviado antes de finalizar la función
+   // res.end();
   }
 }
 
