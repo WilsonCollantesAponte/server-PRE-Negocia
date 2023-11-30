@@ -23,6 +23,7 @@ async function sucursales(req, res) {
     });
 
     res.status(200).json(dataSucursal); // Cambiado de { dataSucursal: results } a solo results
+    bd_conexion([id_empresa]).close();
   } catch (error) {
     console.error("Error en la consulta a la base de datos:", error);
     res.status(500).json({
