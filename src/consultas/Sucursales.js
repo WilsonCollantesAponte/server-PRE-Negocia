@@ -6,7 +6,7 @@ async function Sucursales(req, res) {
 
   try {
     const results = await new Promise((resolve, reject) => {
-      bd_conexion(1).query(
+      bd_conexion(9).query(
         `SELECT almacen_usuario.id_sucursal, almacen.nombre, almacen.direccion, 
         almacen.observaciones FROM almacen, almacen_usuario 
         WHERE almacen_usuario.id_usuario = ? AND almacen_usuario.id_sucursal = almacen.id AND almacen.estado = 1 
