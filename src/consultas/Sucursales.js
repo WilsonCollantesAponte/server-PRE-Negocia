@@ -23,9 +23,7 @@ async function Sucursales(req, res) {
       );
     });
 
-    res.status(200).json({
-      dataSucursal: results
-    });
+    res.status(200).json(results); // Cambiado de { dataSucursal: results } a solo results
   } catch (error) {
     console.error("Error en la consulta a la base de datos:", error);
     res.status(500).json({
