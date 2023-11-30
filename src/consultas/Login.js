@@ -31,7 +31,7 @@ async function login(req, res) {
     res.status(200).json({
       userExist: results.length !== 0,
       passwordIsCorrect,
-      userData: results[0],
+      userData: results[0]
     });
   } catch (error) {
     console.error("Error en la consulta a la base de datos:", error);
