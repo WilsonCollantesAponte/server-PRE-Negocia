@@ -47,6 +47,9 @@ async function login(req, res) {
   } finally {
     // Cerrar la conexión a la base de datos aquí
     bd_conexion(1).end();
+    
+    // Asegurarse de que la respuesta se haya enviado antes de finalizar la función
+    res.end();
   }
 }
 
