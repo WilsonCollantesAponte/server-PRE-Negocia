@@ -3,8 +3,8 @@ const bd_conexion = require("../conexion/bd_conexion");
 
 async function login(req, res) {
   const { user, clave } = req.body;
-
-  try {
+// ...
+try {
     const results = await new Promise((resolve, reject) => {
       bd_conexion(1).query(
         "SELECT * FROM users WHERE user = ?",
@@ -18,27 +18,25 @@ async function login(req, res) {
         }
       );
     });
-
+  
     if (results.length === 0) return res.status(200).json({ userExist: false });
-
+  
     const passwordIsCorrect = await new Promise((resolve, reject) => {
       bcryptjs.compare(clave, results[0].clave, (err, result) => {
         if (err) reject(err);
         else resolve(result);
       });
     });
-
-    res.status(200).json({
-      userExist: results.length !== 0,
-      passwordIsCorrect,
-      userData: results[0]
-    });
+  
+    res.status(200).json({ userExist: results.length !== 0, passwordIsCorrect,  userData: results[0] });
   } catch (error) {
     console.error("Error en la consulta a la base de datos:", error);
     res.status(500).json({
       error: "Hubo un error en la consulta a la base de datos",
     });
   }
+  // ...
+  
 }
 
 module.exports = login;

@@ -1,4 +1,4 @@
-const login = require("../consultas/Login");
+const login = require("../consultas/Login.js");
 const register = require("../consultas/Register");
 
 // Otras importaciones necesarias
@@ -7,6 +7,6 @@ const register = require("../consultas/Register");
 
 module.exports = {
     login,
-  register, // Agrega tu función de registro al objeto exportado
+  register // Agrega tu función de registro al objeto exportado
   // Otras funciones del controlador, si las tienes
 };
