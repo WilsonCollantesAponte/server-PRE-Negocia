@@ -43,6 +43,9 @@ async function login(req, res) {
     res.status(500).json({
       error: "Hubo un error en la consulta a la base de datos",
     });
+  } finally {
+    // Cerrar la conexión a la base de datos aquí
+    bd_conexion(1).end();
   }
 }
 
