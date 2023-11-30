@@ -1,7 +1,6 @@
-const bcryptjs = require("bcryptjs");
 const bd_conexion = require("../conexion/bd_conexion");
 
-async function Sucursales(req, res) {
+async function sucursales(req, res) {
   const { empresa, id_usuario, id_empresa } = req.body;
 
   try {
@@ -32,4 +31,4 @@ async function Sucursales(req, res) {
   }
 }
 
-module.exports = Sucursales;
+module.exports = sucursales;
