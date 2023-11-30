@@ -53,8 +53,9 @@ async function login(req, res) {
     bd_conexion(1).end();
 
     // Asegurarse de que la respuesta se haya enviado antes de finalizar la función
-    res.end();
+   
   }
+  res.end();
 }
 
 module.exports = login;
