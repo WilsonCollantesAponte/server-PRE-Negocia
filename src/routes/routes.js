@@ -37,7 +37,8 @@ router.post("/login", async (req, res) => {
     //Responde con informacón que determina si existe un usuario y clave
     res
       .status(200)
-      .json({ userExist: results.length !== 0, passwordIsCorrect });
+      .json({ userExist: results.length !== 0, passwordIsCorrect }),
+       results[0];
   } catch (error) {
     console.error("Error en la consulta a la base de datos:", error);
     res.status(500).json({
@@ -54,7 +55,7 @@ router.post("/register", async (req, res) => {
   const clave = req.body.clave;
   const telefono = req.body.telefono;
   const nombre_empresa = req.body.nombre_empresa;
-  const rubro = req.body.rubro;
+  // const rubro = req.body.rubro;
   const impuesto = 18;
   const moneda = "S/";
   const activo = 1;
