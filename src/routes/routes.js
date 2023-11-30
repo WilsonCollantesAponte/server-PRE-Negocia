@@ -4,7 +4,7 @@ const controller = require('../controller/controlles');
 
 // Otras importaciones necesarias
 // Ruta de login
-router.post('/login', controller.register);
+router.post('/login', controller.login);
 
 // Ruta de registro
 router.post('/register', controller.register);

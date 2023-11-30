@@ -1,5 +1,5 @@
 const bcryptjs = require("bcryptjs");
-const bd_conexion = require("../conexion/bd_conexion");
+const bd_conexion = require("../conexion/bd_conexion.js");
 
 async function login(req, res) {
   const { user, clave } = req.body;
