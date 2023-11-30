@@ -1,5 +1,6 @@
 const login = require("../consultas/Login");
 const register = require("../consultas/Register");
+const sucursales = require("../consultas/Sucursales");
 
 // Otras importaciones necesarias
 
@@ -7,6 +8,7 @@ const register = require("../consultas/Register");
 
 module.exports = {
     login,
-  register, // Agrega tu función de registro al objeto exportado
+  register,
+  sucursales, // Agrega tu función de registro al objeto exportado
   // Otras funciones del controlador, si las tienes
 };

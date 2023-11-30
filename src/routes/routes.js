@@ -9,6 +9,10 @@ router.post('/login', controller.login);
 // Ruta de registro
 router.post('/register', controller.register);
 
+// Ruta de sucursales
+router.post('/sucursales', controller.sucursales);
+
+
 // Otras rutas, si las tienes
 
 module.exports = router;
