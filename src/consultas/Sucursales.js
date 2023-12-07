@@ -15,11 +15,11 @@ async function sucursales(req, res) {
         AND (almacen.tipo = '1' OR almacen.tipo='3') AND almacen.empresa = ? AND almacen_usuario.empresa = ?
         GROUP BY almacen_usuario.id_sucursal ORDER BY almacen.id ASC`,
         [id_usuario, empresa, empresa],
-        function (err, results) {
+        function (err, dataSucursal) {
           if (err) {
             reject(err);
           } else {
-            resolve(results);
+            resolve(dataSucursal);
           }
         }
       );
