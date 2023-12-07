@@ -2,11 +2,11 @@ const bd_conexion = require("../conexion/bd_conexion");
 
 async function sucursales(req, res) {
   const { empresa, id_usuario, id_empresa } = req.body;
-  //PONER EN VARIABLE LA CONEXION - CLOSE
-    const con = bd_conexion([id_empresa]);
+  const con = bd_conexion([id_empresa]);
+
   try {
     const dataSucursal = await new Promise((resolve, reject) => {
-        con.query(
+      con.query(
         `SELECT almacen_usuario.id_sucursal, almacen.nombre, almacen.direccion, 
         almacen.observaciones FROM almacen, almacen_usuario 
         WHERE almacen_usuario.id_usuario = ? AND almacen_usuario.id_sucursal = almacen.id AND almacen.estado = 1 
@@ -23,8 +23,8 @@ async function sucursales(req, res) {
       );
     });
 
-    res.status(200).json(dataSucursal); // Cambiado de { dataSucursal: results } a solo results
-    con.close(); //cerrar conexion
+    res.status(200).json(dataSucursal);
+    con.close(); // cerrar conexion
   } catch (error) {
     console.error("Error en la consulta a la base de datos:", error);
     res.status(500).json({
