@@ -7,6 +7,8 @@ async function sucursales(req, res) {
   const pool = bd_conexion.pool([id_empresa]);
 
   try {
+    console.log("Iniciando la consulta a la base de datos...");
+
     const dataSucursal = await new Promise((resolve, reject) => {
       pool.query(
         `SELECT almacen_usuario.id_sucursal, almacen.nombre, almacen.direccion, 
@@ -15,16 +17,20 @@ async function sucursales(req, res) {
         AND (almacen.tipo = '1' OR almacen.tipo='3') AND almacen.empresa = ? AND almacen_usuario.empresa = ?
         GROUP BY almacen_usuario.id_sucursal ORDER BY almacen.id ASC`,
         [id_usuario, empresa, empresa],
-        function (err, dataSucursal) {
+        function (err, results) {
           if (err) {
             reject(err);
           } else {
-            resolve(dataSucursal);
+            resolve(results);
           }
         }
       );
+    }).catch(error => {
+      console.error("Error adicional en la promesa:", error);
+      throw error; // Re-lanzar el error para que se maneje en el bloque catch externo
     });
 
+    console.log("Consulta exitosa. Enviando resultados al cliente...");
     res.status(200).json(dataSucursal);
   } catch (error) {
     console.error("Error en la consulta a la base de datos:", error);
@@ -34,6 +40,7 @@ async function sucursales(req, res) {
   } finally {
     // Liberar la conexión al pool
     pool.releaseConnection();
+    console.log("Conexión liberada.");
   }
 }
 
