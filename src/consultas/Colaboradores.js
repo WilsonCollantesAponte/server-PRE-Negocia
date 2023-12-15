@@ -8,7 +8,7 @@ async function colaboradores(req, res) {
     const dataColaboradores = await new Promise((resolve, reject) => {
       con.query(
         `SELECT id_cliente, nombre_cliente FROM colaboradores 
-        WHERE status_cliente = 1 AND empresa = ? ORDER BY nombre_cliente ASC`,
+        WHERE status_cliente = 1 AND empresa = ? AND nombre_cliente != '' ORDER BY nombre_cliente ASC`,
         [ empresa],
         function (err, dataColaboradores) {
           if (err) {
