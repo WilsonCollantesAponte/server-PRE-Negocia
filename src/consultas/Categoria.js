@@ -7,8 +7,8 @@ async function categoria(req, res) {
   try {
     const datacategoria = await new Promise((resolve, reject) => {
       con.query(
-        `SELECT id, nombre FROM categoria 
-        WHERE estado = '1' AND empresa = ? AND nombre != '' ORDER BY nombre ASC `,
+        `SELECT id, nombre FROM familia_productom 
+        WHERE estado = '1' AND empresa = ? AND nombre != '' ORDER BY nombre ASC LIMIT `,
         [ empresa],
         function (err, datacategoria) {
           if (err) {
