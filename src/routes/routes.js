@@ -16,4 +16,10 @@ router.post("/sucursales", controller.sucursales);
 router.get("/rubros", controller.rubros);
 // Otras rutas, si las tienes
 router.post("/colaboradores", controller.colaboradores);
+
+// Ruta de marcas
+router.post("/marca", controller.marca);
+
+// Ruta de Categorias
+router.post("/categoria", controller.categoria);
 module.exports = router;
