@@ -36,7 +36,7 @@ async function correlativo(req, res) {
     const dataCorrelativo = await new Promise((resolve, reject) => {
       con.query(
         consulta,
-        [id_serie, empresa],
+        [id_serie, empresa, id_serie, empresa ],
         function (err, dataCorrelativo) {
           if (err) {
             reject(err);
