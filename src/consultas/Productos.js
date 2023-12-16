@@ -174,7 +174,7 @@ LIMIT 0, 20
       });
     });
 
-    const withFrontSintax = response.map((rubroObject) => rubroObject.rubro);
+    const withFrontSintax = response.map((productosObject) => productosObject.productos);
 
     res.status(200).json(withFrontSintax);
     conn.close(); // cerrar conexion
