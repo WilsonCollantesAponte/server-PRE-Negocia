@@ -17,6 +17,7 @@ async function rubros(req, res) {
     const withFrontSintax = response.map((rubroObject) => rubroObject.rubro);
 
     res.status(200).json(withFrontSintax);
+    conn.close(); // cerrar conexion
   } catch (error) {
     res.status(500).json({ error });
   }

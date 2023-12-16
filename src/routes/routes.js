@@ -32,4 +32,7 @@ router.post("/correlativo", controller.correlativo);
 // Ruta de Clientes
 router.post("/clientes", controller.clientes);
 
+// Ruta de Productos
+router.post("/productos", controller.productos);
+
 module.exports = router;
