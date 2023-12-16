@@ -63,7 +63,7 @@ async function productos(req, res) {
 FROM products tb_products
 LEFT JOIN producto_almacen tb_producto_almacen ON (tb_producto_almacen.id_producto = tb_products.id_producto AND tb_producto_almacen.id_almacen = '2' AND tb_producto_almacen.empresa = ?)
 LEFT JOIN familia_productom tb_familia_productom ON (tb_familia_productom.id = tb_products.familia_producto AND tb_familia_productom.empresa = ?)
-LEFT JOIN marca tb_marca ON (tb_marca.id = tb_products.marca AND tb_marca.empresa = ?)
+ LEFT JOIN marca tb_marca ON (tb_marca.id = tb_products.marca AND tb_marca.empresa = ?)
 LEFT JOIN unidadm tb_unidadm ON (tb_unidadm.id = tb_products.unidad)
 LEFT JOIN flujocaja2 tb_flujocaja2 ON (tb_flujocaja2.id = tb_products.cuenta)
 LEFT JOIN movimiento_inventario tb_movimiento_inventario ON (tb_movimiento_inventario.id_producto = tb_products.id_producto AND tb_movimiento_inventario.tipo_movimiento = 3 AND tb_movimiento_inventario.id_almacen = '2' AND tb_movimiento_inventario.empresa = ?)
@@ -102,7 +102,7 @@ tb_producto_matriz.imagen) END AS FOTO_PRODUCTO, '' AS TEXTO_INVENTARIABLE, 0 AS
  '' AS ULT_ID_TMP, '' AS NOMBRE_SUCURSAL, '' AS N_PROVEEDOR
 FROM producto_matriz tb_producto_matriz
 LEFT JOIN familia_productom tb_familia_productom ON (tb_familia_productom.id = tb_producto_matriz.categoria AND tb_familia_productom.empresa = ?)
-LEFT JOIN marca tb_marca ON (tb_marca.id = tb_producto_matriz.marca AND tb_marca.empresa = ?)
+ LEFT JOIN marca tb_marca ON (tb_marca.id = tb_producto_matriz.marca AND tb_marca.empresa = ?)
 WHERE tb_producto_matriz.estado_producto = 1 AND tb_producto_matriz.empresa = ?
 GROUP BY tb_producto_matriz.id)) AS TABLA_FINAL
 LEFT JOIN (
@@ -145,7 +145,7 @@ tb_producto_almacen.cantidad_por_boletear AS CANTIDAD_POR_BOLETEAR, tb_products.
 FROM products tb_products
 LEFT JOIN producto_almacen tb_producto_almacen ON (tb_producto_almacen.id_producto = tb_products.id_producto AND tb_producto_almacen.id_almacen = '2' AND tb_producto_almacen.empresa = ?)
 LEFT JOIN familia_productom tb_familia_productom ON (tb_familia_productom.id = tb_products.familia_producto AND tb_familia_productom.empresa = ?)
-LEFT JOIN marca tb_marca ON (tb_marca.id = tb_products.marca AND tb_marca.empresa = ?)
+ LEFT JOIN marca tb_marca ON (tb_marca.id = tb_products.marca AND tb_marca.empresa = ?)
 LEFT JOIN unidadm tb_unidadm ON (tb_unidadm.id = tb_products.unidad)
 LEFT JOIN flujocaja2 tb_flujocaja2 ON (tb_flujocaja2.id = tb_products.cuenta)
 LEFT JOIN movimiento_inventario tb_movimiento_inventario ON (tb_movimiento_inventario.id_producto = tb_products.id_producto AND tb_movimiento_inventario.tipo_movimiento = 3 AND tb_movimiento_inventario.id_almacen = '2' AND tb_movimiento_inventario.empresa = ?)
