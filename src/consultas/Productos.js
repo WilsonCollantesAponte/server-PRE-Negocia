@@ -61,21 +61,21 @@ async function productos(req, res) {
     '' AS CANT_ULT_COMPRA, '' AS ULT_COSTO_COMPRA, '' AS ULT_ID_COMPRA, '' AS ULT_ID_TMP, 
     tb_sucursal.nombre AS NOMBRE_SUCURSAL, '' AS N_PROVEEDOR
 FROM products tb_products
-LEFT JOIN producto_almacen tb_producto_almacen ON (tb_producto_almacen.id_producto = tb_products.id_producto AND tb_producto_almacen.id_almacen = '2' AND tb_producto_almacen.empresa = '?')
-LEFT JOIN familia_productom tb_familia_productom ON (tb_familia_productom.id = tb_products.familia_producto AND tb_familia_productom.empresa = '?')
-LEFT JOIN marca tb_marca ON (tb_marca.id = tb_products.marca AND tb_marca.empresa = '?')
+LEFT JOIN producto_almacen tb_producto_almacen ON (tb_producto_almacen.id_producto = tb_products.id_producto AND tb_producto_almacen.id_almacen = '2' AND tb_producto_almacen.empresa = ?)
+LEFT JOIN familia_productom tb_familia_productom ON (tb_familia_productom.id = tb_products.familia_producto AND tb_familia_productom.empresa = ?)
+LEFT JOIN marca tb_marca ON (tb_marca.id = tb_products.marca AND tb_marca.empresa = ?)
 LEFT JOIN unidadm tb_unidadm ON (tb_unidadm.id = tb_products.unidad)
 LEFT JOIN flujocaja2 tb_flujocaja2 ON (tb_flujocaja2.id = tb_products.cuenta)
-LEFT JOIN movimiento_inventario tb_movimiento_inventario ON (tb_movimiento_inventario.id_producto = tb_products.id_producto AND tb_movimiento_inventario.tipo_movimiento = 3 AND tb_movimiento_inventario.id_almacen = '2' AND tb_movimiento_inventario.empresa = '?')
+LEFT JOIN movimiento_inventario tb_movimiento_inventario ON (tb_movimiento_inventario.id_producto = tb_products.id_producto AND tb_movimiento_inventario.tipo_movimiento = 3 AND tb_movimiento_inventario.id_almacen = '2' AND tb_movimiento_inventario.empresa = ?)
 LEFT JOIN lista_precio tb_lista_precio ON (tb_lista_precio.id_categoria = 4 AND tb_lista_precio.estado = '1' AND tb_lista_precio.sucursal = 2 AND tb_lista_precio.empresa = 2)
 LEFT JOIN lista_precio_detalle tb_lista_precio_detalle ON (tb_lista_precio.id = tb_lista_precio_detalle.id_lista_precio AND tb_lista_precio_detalle.id_elemento = tb_products.id_producto AND tb_lista_precio_detalle.tipo_ajuste = 5 AND tb_lista_precio_detalle.empresa = 2)
-LEFT JOIN producto_proveedorm tb_producto_proveedorm ON (tb_producto_proveedorm.proveedor = 0 AND tb_producto_proveedorm.producto = tb_products.id_producto AND tb_producto_proveedorm.empresa = '?')
-LEFT JOIN caracteristica_producto tb_caracteristica_producto ON (tb_caracteristica_producto.id_producto = tb_products.id_producto AND tb_caracteristica_producto.estado = 1 AND tb_caracteristica_producto.empresa = '?')
-LEFT JOIN ecommerce_producto tb_ecommerce_producto ON (tb_ecommerce_producto.id_producto = tb_products.id_producto AND tb_ecommerce_producto.empresa = '?')
-LEFT JOIN ecommerce_marca tb_ecommerce_marca ON (tb_ecommerce_marca.id_producto = tb_products.id_producto AND tb_ecommerce_marca.empresa = '?')
-LEFT JOIN products_ubicacion tb_products_ubicacion ON (tb_products_ubicacion.id = tb_products.id_ubicacion AND tb_products_ubicacion.empresa = '?' AND tb_products_ubicacion.estado = 1)
-LEFT JOIN almacen tb_sucursal ON (tb_sucursal.id = '2' AND tb_sucursal.empresa = '?')
-WHERE 1 = 1 AND tb_products.empresa = '?' AND (tb_products.id_variable_cotizacion = '0') 
+LEFT JOIN producto_proveedorm tb_producto_proveedorm ON (tb_producto_proveedorm.proveedor = 0 AND tb_producto_proveedorm.producto = tb_products.id_producto AND tb_producto_proveedorm.empresa = ?)
+LEFT JOIN caracteristica_producto tb_caracteristica_producto ON (tb_caracteristica_producto.id_producto = tb_products.id_producto AND tb_caracteristica_producto.estado = 1 AND tb_caracteristica_producto.empresa = ?)
+LEFT JOIN ecommerce_producto tb_ecommerce_producto ON (tb_ecommerce_producto.id_producto = tb_products.id_producto AND tb_ecommerce_producto.empresa = ?)
+LEFT JOIN ecommerce_marca tb_ecommerce_marca ON (tb_ecommerce_marca.id_producto = tb_products.id_producto AND tb_ecommerce_marca.empresa = ?)
+LEFT JOIN products_ubicacion tb_products_ubicacion ON (tb_products_ubicacion.id = tb_products.id_ubicacion AND tb_products_ubicacion.empresa = ? AND tb_products_ubicacion.estado = 1)
+LEFT JOIN almacen tb_sucursal ON (tb_sucursal.id = '2' AND tb_sucursal.empresa = ?)
+WHERE 1 = 1 AND tb_products.empresa = ? AND (tb_products.id_variable_cotizacion = '0') 
 AND (CASE WHEN (DATE_FORMAT(tb_caracteristica_producto.valor_caracteristica, '%Y-%m-%d')) 
 <= (DATE_FORMAT('2023-12-16', '%Y-%m-%d')) THEN 0 WHEN (DATE_FORMAT(tb_caracteristica_producto.valor_caracteristica, '%Y-%m-%d')) > 
 (DATE_FORMAT('2023-12-16', '%Y-%m-%d')) THEN 1 WHEN (tb_products.estado_matriz <= 1 AND 
@@ -101,9 +101,9 @@ tb_producto_matriz.imagen) END AS FOTO_PRODUCTO, '' AS TEXTO_INVENTARIABLE, 0 AS
  '' AS CANTIDAD_POR_BOLETEAR, 1 AS STATUS_PRODUCTO, '' AS CANT_ULT_COMPRA, '' AS ULT_COSTO_COMPRA, '' AS ULT_ID_COMPRA, 
  '' AS ULT_ID_TMP, '' AS NOMBRE_SUCURSAL, '' AS N_PROVEEDOR
 FROM producto_matriz tb_producto_matriz
-LEFT JOIN familia_productom tb_familia_productom ON (tb_familia_productom.id = tb_producto_matriz.categoria AND tb_familia_productom.empresa = '?')
-LEFT JOIN marca tb_marca ON (tb_marca.id = tb_producto_matriz.marca AND tb_marca.empresa = '?')
-WHERE tb_producto_matriz.estado_producto = 1 AND tb_producto_matriz.empresa = '?'
+LEFT JOIN familia_productom tb_familia_productom ON (tb_familia_productom.id = tb_producto_matriz.categoria AND tb_familia_productom.empresa = ?)
+LEFT JOIN marca tb_marca ON (tb_marca.id = tb_producto_matriz.marca AND tb_marca.empresa = ?)
+WHERE tb_producto_matriz.estado_producto = 1 AND tb_producto_matriz.empresa = ?
 GROUP BY tb_producto_matriz.id)) AS TABLA_FINAL
 LEFT JOIN (
 SELECT COUNT(*) AS NUM_ROWS
@@ -143,21 +143,21 @@ tb_producto_almacen.cantidad_por_boletear AS CANTIDAD_POR_BOLETEAR, tb_products.
 '' AS CANT_ULT_COMPRA, '' AS ULT_COSTO_COMPRA, '' AS ULT_ID_COMPRA, '' AS ULT_ID_TMP, tb_sucursal.nombre AS NOMBRE_SUCURSAL, 
 '' AS N_PROVEEDOR
 FROM products tb_products
-LEFT JOIN producto_almacen tb_producto_almacen ON (tb_producto_almacen.id_producto = tb_products.id_producto AND tb_producto_almacen.id_almacen = '2' AND tb_producto_almacen.empresa = '?')
-LEFT JOIN familia_productom tb_familia_productom ON (tb_familia_productom.id = tb_products.familia_producto AND tb_familia_productom.empresa = '?')
-LEFT JOIN marca tb_marca ON (tb_marca.id = tb_products.marca AND tb_marca.empresa = '?')
+LEFT JOIN producto_almacen tb_producto_almacen ON (tb_producto_almacen.id_producto = tb_products.id_producto AND tb_producto_almacen.id_almacen = '2' AND tb_producto_almacen.empresa = ?)
+LEFT JOIN familia_productom tb_familia_productom ON (tb_familia_productom.id = tb_products.familia_producto AND tb_familia_productom.empresa = ?)
+LEFT JOIN marca tb_marca ON (tb_marca.id = tb_products.marca AND tb_marca.empresa = ?)
 LEFT JOIN unidadm tb_unidadm ON (tb_unidadm.id = tb_products.unidad)
 LEFT JOIN flujocaja2 tb_flujocaja2 ON (tb_flujocaja2.id = tb_products.cuenta)
-LEFT JOIN movimiento_inventario tb_movimiento_inventario ON (tb_movimiento_inventario.id_producto = tb_products.id_producto AND tb_movimiento_inventario.tipo_movimiento = 3 AND tb_movimiento_inventario.id_almacen = '2' AND tb_movimiento_inventario.empresa = '?')
+LEFT JOIN movimiento_inventario tb_movimiento_inventario ON (tb_movimiento_inventario.id_producto = tb_products.id_producto AND tb_movimiento_inventario.tipo_movimiento = 3 AND tb_movimiento_inventario.id_almacen = '2' AND tb_movimiento_inventario.empresa = ?)
 LEFT JOIN lista_precio tb_lista_precio ON (tb_lista_precio.id_categoria = 4 AND tb_lista_precio.estado = '1' AND tb_lista_precio.sucursal = 2 AND tb_lista_precio.empresa = 2)
 LEFT JOIN lista_precio_detalle tb_lista_precio_detalle ON (tb_lista_precio.id = tb_lista_precio_detalle.id_lista_precio AND tb_lista_precio_detalle.id_elemento = tb_products.id_producto AND tb_lista_precio_detalle.tipo_ajuste = 5 AND tb_lista_precio_detalle.empresa = 2)
-LEFT JOIN producto_proveedorm tb_producto_proveedorm ON (tb_producto_proveedorm.proveedor = 0 AND tb_producto_proveedorm.producto = tb_products.id_producto AND tb_producto_proveedorm.empresa = '?')
-LEFT JOIN caracteristica_producto tb_caracteristica_producto ON (tb_caracteristica_producto.id_producto = tb_products.id_producto AND tb_caracteristica_producto.estado = 1 AND tb_caracteristica_producto.empresa = '?')
-LEFT JOIN ecommerce_producto tb_ecommerce_producto ON (tb_ecommerce_producto.id_producto = tb_products.id_producto AND tb_ecommerce_producto.empresa = '?')
-LEFT JOIN ecommerce_marca tb_ecommerce_marca ON (tb_ecommerce_marca.id_producto = tb_products.id_producto AND tb_ecommerce_marca.empresa = '?')
-LEFT JOIN products_ubicacion tb_products_ubicacion ON (tb_products_ubicacion.id = tb_products.id_ubicacion AND tb_products_ubicacion.empresa = '?' AND tb_products_ubicacion.estado = 1)
-LEFT JOIN almacen tb_sucursal ON (tb_sucursal.id = '2' AND tb_sucursal.empresa = '?')
-WHERE 1 = 1 AND tb_products.empresa = '?' AND (tb_products.id_variable_cotizacion = '0') AND (CASE WHEN (DATE_FORMAT(tb_caracteristica_producto.valor_caracteristica, '%Y-%m-%d')) <= (DATE_FORMAT('2023-12-16', '%Y-%m-%d')) THEN 0 WHEN (DATE_FORMAT(tb_caracteristica_producto.valor_caracteristica, '%Y-%m-%d')) > (DATE_FORMAT('2023-12-16', '%Y-%m-%d')) THEN 1 WHEN (tb_products.estado_matriz <= 1 AND tb_caracteristica_producto.valor_caracteristica IS NULL) THEN 1 WHEN (tb_caracteristica_producto.valor_caracteristica = '' AND tb_caracteristica_producto.id_producto = tb_products.id_producto) THEN 1 ELSE 0 END = 1) AND tb_products.status_producto = 1 AND tb_products.products_improvisado = 0
+LEFT JOIN producto_proveedorm tb_producto_proveedorm ON (tb_producto_proveedorm.proveedor = 0 AND tb_producto_proveedorm.producto = tb_products.id_producto AND tb_producto_proveedorm.empresa = ?)
+LEFT JOIN caracteristica_producto tb_caracteristica_producto ON (tb_caracteristica_producto.id_producto = tb_products.id_producto AND tb_caracteristica_producto.estado = 1 AND tb_caracteristica_producto.empresa = ?)
+LEFT JOIN ecommerce_producto tb_ecommerce_producto ON (tb_ecommerce_producto.id_producto = tb_products.id_producto AND tb_ecommerce_producto.empresa = ?)
+LEFT JOIN ecommerce_marca tb_ecommerce_marca ON (tb_ecommerce_marca.id_producto = tb_products.id_producto AND tb_ecommerce_marca.empresa = ?)
+LEFT JOIN products_ubicacion tb_products_ubicacion ON (tb_products_ubicacion.id = tb_products.id_ubicacion AND tb_products_ubicacion.empresa = ? AND tb_products_ubicacion.estado = 1)
+LEFT JOIN almacen tb_sucursal ON (tb_sucursal.id = '2' AND tb_sucursal.empresa = ?)
+WHERE 1 = 1 AND tb_products.empresa = ? AND (tb_products.id_variable_cotizacion = '0') AND (CASE WHEN (DATE_FORMAT(tb_caracteristica_producto.valor_caracteristica, '%Y-%m-%d')) <= (DATE_FORMAT('2023-12-16', '%Y-%m-%d')) THEN 0 WHEN (DATE_FORMAT(tb_caracteristica_producto.valor_caracteristica, '%Y-%m-%d')) > (DATE_FORMAT('2023-12-16', '%Y-%m-%d')) THEN 1 WHEN (tb_products.estado_matriz <= 1 AND tb_caracteristica_producto.valor_caracteristica IS NULL) THEN 1 WHEN (tb_caracteristica_producto.valor_caracteristica = '' AND tb_caracteristica_producto.id_producto = tb_products.id_producto) THEN 1 ELSE 0 END = 1) AND tb_products.status_producto = 1 AND tb_products.products_improvisado = 0
 GROUP BY tb_products.id_producto
 HAVING 1 = 1
 ORDER BY tb_products.id_producto DESC) AS TB_NUM_ROWS) AS TB_NUM_ROWS ON 1 = 1
@@ -165,7 +165,9 @@ WHERE 1=1 AND TABLA_FINAL.TABLA_PRINCIPAL = 1
 GROUP BY TABLA_FINAL.ID_PRODUCTO
 ORDER BY TABLA_FINAL.ID_PRODUCTO DESC
 LIMIT 0, 20
-      `, function (err, results) {
+      `, 
+      [empresa],
+      function (err, results) {
         if (err) {
           reject(err);
         } else {
