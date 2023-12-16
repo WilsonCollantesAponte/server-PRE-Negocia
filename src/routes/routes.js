@@ -29,4 +29,7 @@ router.post("/serie", controller.serie);
 // Ruta de Correlativo
 router.post("/correlativo", controller.correlativo);
 
+// Ruta de Clientes
+router.post("/clientes", controller.clientes);
+
 module.exports = router;
