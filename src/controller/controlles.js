@@ -5,7 +5,7 @@ const sucursales = require("../consultas/Sucursales");
 const colaboradores = require("../consultas/Colaboradores");
 const marca = require("../consultas/Marca");
 const categoria = require("../consultas/Categoria");
-
+const serie = require("../consultas/Serie");
 
 // Otras importaciones necesarias
 
@@ -17,7 +17,8 @@ module.exports = {
   rubros,
   colaboradores,
   marca, 
-  categoria
+  categoria,
+  serie
   // Agrega tu función de registro al objeto exportado
   // Otras funciones del controlador, si las tienes
 };

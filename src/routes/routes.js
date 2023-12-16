@@ -22,4 +22,8 @@ router.post("/marca", controller.marca);
 
 // Ruta de Categorias
 router.post("/categoria", controller.categoria);
+
+// Ruta de Categorias
+router.post("/serie", controller.serie);
+
 module.exports = router;
