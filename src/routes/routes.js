@@ -26,4 +26,7 @@ router.post("/categoria", controller.categoria);
 // Ruta de Categorias
 router.post("/serie", controller.serie);
 
+// Ruta de Correlativo
+router.post("/correlativo", controller.correlativo);
+
 module.exports = router;
