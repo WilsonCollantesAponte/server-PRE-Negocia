@@ -9,7 +9,7 @@ const serie = require("../consultas/Serie");
 const correlativo = require("../consultas/Correlativo");
 const clientes = require("../consultas/Clientes");
 const fn_principal_producto = require("../consultas/ProductosPrincipal");
-const productos_dos = require("../consultas/Productos_dos");
+const productos_dos = require("../consultas/ProductosDos");
 
 // Otras importaciones necesarias
 
