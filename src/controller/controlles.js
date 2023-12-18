@@ -8,7 +8,7 @@ const categoria = require("../consultas/Categoria");
 const serie = require("../consultas/Serie");
 const correlativo = require("../consultas/Correlativo");
 const clientes = require("../consultas/Clientes");
-const productos = require("../consultas/Productos");
+const productos = require("../consultas/ProductosPrincipal");
 
 // Otras importaciones necesarias
 
