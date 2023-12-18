@@ -33,32 +33,32 @@ var conn_empresa = await fn_conexion(req, res, empresa)
 if (isConditionTrue) {
 
 if (isConditionTrue) {
-var fn_id_producto = req.body.fn_id_producto || ''
-var fn_id_sucursal = parseInt(req.body.fn_id_sucursal) || ''
-var fn_offset = parseInt(req.body.fn_offset) || ''
-var fn_per_page = parseInt(req.body.fn_per_page) || ''
-var fn_id_categoria = req.body.fn_id_categoria || ''
-var fn_id_marca = req.body.fn_id_marca || ''
-var fn_id_unidad = req.body.fn_id_unidad || ''
-var fn_tipo = req.body.fn_tipo || ''
-var fn_id_cuenta = req.body.fn_id_cuenta || ''
-var fn_filtro_stock_minimo = req.body.fn_filtro_stock_minimo || ''
-var fn_productos_actividad = req.body.fn_productos_actividad || ''
-var fn_is_venta = parseInt(req.body.fn_is_venta) || ''
-var fn_is_compra = parseInt(req.body.fn_is_compra) || ''
-var fn_is_inventariable = parseInt(req.body.fn_is_inventariable) || ''
-var fn_texto_busqueda = req.body.fn_texto_busqueda || ''
-var fn_reporte_inventario_valorizado = parseInt(req.body.fn_reporte_inventario_valorizado) || ''
-
-var fn_join_producto_almacen
-if (fn_reporte_inventario_valorizado == 1) {
-fn_join_producto_almacen = 'INNER'
-} else {
-fn_join_producto_almacen = 'LEFT'
-}
-
-var fn_productos_existentes = req.body.fn_productos_existentes
-var fn_codigo_sunat = parseInt(req.body.fn_codigo_sunat)
+    var fn_id_producto = req.body.fn_id_producto || '';
+    var fn_id_sucursal = parseInt(req.body.fn_id_sucursal) || '';
+    var fn_offset = parseInt(req.body.fn_offset) || '';
+    var fn_per_page = parseInt(req.body.fn_per_page) || '';
+    var fn_id_categoria = req.body.fn_id_categoria || '';
+    var fn_id_marca = req.body.fn_id_marca || '';
+    var fn_id_unidad = req.body.fn_id_unidad || '';
+    var fn_tipo = req.body.fn_tipo || '';
+    var fn_id_cuenta = req.body.fn_id_cuenta || '';
+    var fn_filtro_stock_minimo = req.body.fn_filtro_stock_minimo || '';
+    var fn_productos_actividad = req.body.fn_productos_actividad || '';
+    var fn_is_venta = parseInt(req.body.fn_is_venta) || '';
+    var fn_is_compra = parseInt(req.body.fn_is_compra) || '';
+    var fn_is_inventariable = parseInt(req.body.fn_is_inventariable) || '';
+    var fn_texto_busqueda = req.body.fn_texto_busqueda || '';
+    var fn_reporte_inventario_valorizado = parseInt(req.body.fn_reporte_inventario_valorizado) || '';
+  
+    var fn_join_producto_almacen;
+    if (fn_reporte_inventario_valorizado === 1) {
+      fn_join_producto_almacen = 'INNER';
+    } else {
+      fn_join_producto_almacen = 'LEFT';
+    }
+  
+    var fn_productos_existentes = req.body.fn_productos_existentes;
+    var fn_codigo_sunat = parseInt(req.body.fn_codigo_sunat);
 
 }
 
@@ -1189,7 +1189,10 @@ var [rows] = await conn_empresa.query(tabla_final)
 res.json(rows)
 
 } catch (error) {
-return res.status(500).json({ message: 'Algo salió mal: fn_principal_producto' })
+return res.status(500).json({ 
+    message: 'Algo salió mal: fn_principal_producto',
+    datos: tabla_final,
+ })
 }
 }
 
