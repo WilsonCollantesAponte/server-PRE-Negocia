@@ -1187,9 +1187,9 @@ tabla_final += ` LIMIT 20 `
 
 var [rows] = await conn_empresa.query(tabla_final)
 res.json(rows)
-
+return res.status(200).json({message: "Usuario no encontrado" });
 } catch (error) {
-return res.status(500).json({ 
+return res.status(500).json({
     message: 'Algo salió mal: fn_principal_producto',
     datos: tabla_final,
  })
