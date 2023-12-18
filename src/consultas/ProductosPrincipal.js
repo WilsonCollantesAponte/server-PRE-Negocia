@@ -661,7 +661,7 @@ t3_uno += `
 FROM 
 products tb_products
 `
-
+ 
 // TABLA ALMACENES EMPRESA
 if (fn_id_sucursal) {
 t3_uno += ` LEFT JOIN almacen tb_sucursal 
