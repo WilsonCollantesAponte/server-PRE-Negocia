@@ -35,4 +35,7 @@ router.post("/clientes", controller.clientes);
 // Ruta de Productos
 router.post("/fn_productos", controller.fn_principal_producto);
 
+// Ruta de Productos
+router.post("/productos_dos", controller.productos_dos);
+
 module.exports = router;
