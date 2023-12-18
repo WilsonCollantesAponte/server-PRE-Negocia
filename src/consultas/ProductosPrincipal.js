@@ -1,12 +1,13 @@
 import { fn_conexion } from ("../conexion/NewConexion.js");
 
 
-
 async function fn_principal_producto(req, res) {
 try {
 var isConditionTrue = true
 var empresa = parseInt(req.body.empresa)
 var conn_empresa = await fn_conexion(req, res, empresa)
+
+console.Console.Write('mundo');
 
 //FILTROS
 if (isConditionTrue) {
