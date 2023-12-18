@@ -9,12 +9,12 @@ const serie = require("../consultas/Serie");
 const correlativo = require("../consultas/Correlativo");
 const clientes = require("../consultas/Clientes");
 const fn_principal_producto = require("../consultas/ProductosPrincipal");
-const productos_dos = require("../consultas/productos_dos");
+const productos_dos = require("../consultas/Productos_dos");
 
 // Otras importaciones necesarias
 
 // Aquí puedes tener otras funciones de tu controlador, si las tienes
-module.exports = {
+module.exports = {   
   login,
   register,
   sucursales,
