@@ -33,6 +33,6 @@ router.post("/correlativo", controller.correlativo);
 router.post("/clientes", controller.clientes);
 
 // Ruta de Productos
-router.post("/fn_productos", controller.fn_productos);
+router.post("/fn_productos", controller.fn_principal_producto);
 
 module.exports = router;

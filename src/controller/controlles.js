@@ -8,7 +8,7 @@ const categoria = require("../consultas/Categoria");
 const serie = require("../consultas/Serie");
 const correlativo = require("../consultas/Correlativo");
 const clientes = require("../consultas/Clientes");
-const fn_productos = require("../consultas/ProductosPrincipal");
+const fn_principal_producto = require("../consultas/ProductosPrincipal");
 
 // Otras importaciones necesarias
 
@@ -24,7 +24,7 @@ module.exports = {
   serie,
   correlativo,
   clientes,
-  fn_productos
+  fn_principal_producto
   // Agrega tu función de registro al objeto exportado
   // Otras funciones del controlador, si las tienes
 };
