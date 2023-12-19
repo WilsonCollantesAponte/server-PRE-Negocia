@@ -1,11 +1,15 @@
-const bd_conexion = require("../conexion/bd_conexion");
+//const bd_conexion = require("../conexion/bd_conexion");
+const { fn_conexion } = require('../../src/conexion/NewConexion.js');
+
 const explode_filtros_globales_v2 = require('../funcion/funciones.js'); 
     
     async function productos_dos(req, res) {
         try {
             var isConditionTrue = true
-            var id_empresa = parseInt(req.body.id_bd)
-            const conn_empresa = bd_conexion([id_empresa]);
+            var empresa = parseInt(req.body.empresa)
+var conn_empresa = await fn_conexion(req, res, empresa)
+           // var id_empresa = parseInt(req.body.id_bd)
+            //const conn_empresa = bd_conexion([id_empresa]);
             //FILTROS
             if (isConditionTrue) {
             

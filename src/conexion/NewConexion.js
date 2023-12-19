@@ -1,7 +1,7 @@
 // NewConexion.js
 
-import { createPool } from "mysql2/promise";
-import { DB_HOST, DB_USER, DB_PASSWORD, DB_PORT, DB_DATABASE } from '../config/BdPromise.js'; // Corregido aquí
+const { createPool } = require('mysql2/promise');
+const { DB_HOST, DB_USER, DB_PASSWORD, DB_PORT, DB_DATABASE } = require('../config/ConfigBD.js');
 
 const pool = createPool({
   host: DB_HOST,
@@ -11,7 +11,7 @@ const pool = createPool({
   database: DB_DATABASE
 });
 
-export const fn_conexion = async (req, res, id_empresa) => {
+exports.fn_conexion = async (req, res, id_empresa) => {
     try {
         if (req.session.USER_DB && req.session.CLAVE_DB &&
             req.session.HOST_DB && req.session.NAME_DB) {
@@ -42,12 +42,12 @@ export const fn_conexion = async (req, res, id_empresa) => {
             });
         }
     } catch (error) {
-        console.error("Error in fn_conexion:", error.message);
-        throw new Error("Something went wrong in fn_conexion");
-    }
+    console.error("Error in fn_conexion:", error.message);
+    throw new Error("Something went wrong in fn_conexion");
+  }
 };
 
-export const conn = async () => {
+exports.conn = async () => {
   const connection = await pool.getConnection();
   return {
     query: connection.execute.bind(connection),
