@@ -16,7 +16,7 @@ var fn_id_producto = req.body.fn_id_producto || '';
 var fn_id_sucursal = parseInt(req.body.fn_id_sucursal) || 0;
 // ... (other variables)
 
-    
+res.status(200).json(req.body);
     } catch (error) {
     return res.status(500).json({ message: 'Algo salió mal: fn_principal_producto' })
     }
