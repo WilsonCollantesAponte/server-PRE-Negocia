@@ -1177,7 +1177,7 @@ const explode_filtros_globales_v2 = require('../funcion/funciones.js');
                 console.error('Error en tuFuncion:', error);
 
                 // Puedes ajustar el mensaje de error según tus necesidades
-                return res.status(500).json({ message: `Algo salió mal: fn_principal_producto. Detalles del error: ${error.message}` });
+                return res.status(500).json({ message: `Algo salió mal: fn_principal_producto. Detalles del error 112:  ${error.message}` });
               
             }
     }
