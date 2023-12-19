@@ -38,4 +38,7 @@ router.post("/fn_productos", controller.fn_principal_producto);
 // Ruta de Productos
 router.post("/productos_dos", controller.productos_dos);
 
+
+// Ruta de Productos
+router.post("/cad_dos", controller.cad_dos);
 module.exports = router;
