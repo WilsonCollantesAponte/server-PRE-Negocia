@@ -13,15 +13,15 @@ const pool = createPool({
 
 exports.fn_conexion = async (req, res, id_empresa) => {
     try {
-        if (req.session.USER_DB && req.session.CLAVE_DB &&
-            req.session.HOST_DB && req.session.NAME_DB) {
+        if (req.session.DB_USER && req.session.DB_PASSWORD &&
+            req.session.DB_HOST && req.session.DB_DATABASE) {
             console.log('CONEXIÓN POR SESIÓN');
             return await createPool({
-                host: req.session.HOST_DB,
-                user: req.session.USER_DB,
-                password: req.session.CLAVE_DB,
+                host: req.session.DB_HOST,
+                user: req.session.DB_USER,
+                password: req.session.DB_PASSWORD,
                 port: 3306,
-                database: req.session.NAME_DB
+                database: req.session.DB_DATABASE
             });
         } else {
             const sql = `
