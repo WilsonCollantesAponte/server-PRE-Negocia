@@ -1176,12 +1176,12 @@ var conn_empresa = await fn_conexion(req, res, empresa)
             
             var [rows] = await conn_empresa.query(tabla_final)
             res.json(rows)
-            res.status(200).json('Request Body');
+            res.status(200).json('Request Body123');
             } catch (error) {
                 console.error('Error en tuFuncion:', error);
 
                 // Puedes ajustar el mensaje de error según tus necesidades
-                return res.status(500).json({ message: `Algo salió mal: fn_principal_producto. Detalles del error 112:  ${error.message}` });
+                return res.status(500).json({ message: `Algo salió mal: fn_principal_producto. Detalles del error 1234:  ${error.message}` });
               
             }
     }
