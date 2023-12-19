@@ -1,6 +1,5 @@
-import { fn_conexion } from ("../conexion/NewConexion.js");
-
-
+const bd_conexion = require("../conexion/bd_conexion");
+ 
 async function fn_principal_producto(req, res) {
 try {
 var isConditionTrue = true
