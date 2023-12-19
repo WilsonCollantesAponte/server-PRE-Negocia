@@ -39,5 +39,5 @@ router.post("/productos_dos", controller.productos_dos);
 
 
 // Ruta de Productos
-router.post("/cad_dos", controller.cad_dos);
+router.post("/categoriados", controller.categoriados);
 module.exports = router;

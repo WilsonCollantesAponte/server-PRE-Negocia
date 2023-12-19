@@ -1,6 +1,6 @@
 const bd_conexion = require("../conexion/bd_conexion");
 
-async function categoria(req, res) {
+async function categoriados(req, res) {
   const { empresa, id_empresa } = req.body;
   const con = bd_conexion([id_empresa]);
 
@@ -30,4 +30,4 @@ async function categoria(req, res) {
   }
 }
 
-module.exports = categoria;
+module.exports = categoriados;
