@@ -13,7 +13,7 @@ const pool = createPool({
 
 exports.fn_conexion = async (req, res, id_empresa) => {
     try {
-        if (req.session.DB_USER && req.session.DB_PASSWORD &&
+        if (req.session && req.session.DB_USER && req.session.DB_PASSWORD &&
             req.session.DB_HOST && req.session.DB_DATABASE) {
             console.log('CONEXIÓN POR SESIÓN');
             return await createPool({
@@ -31,7 +31,7 @@ exports.fn_conexion = async (req, res, id_empresa) => {
                 WHERE perfil.id_perfil = ? LIMIT 1
             `;
             const [rows] = await pool.query(sql, [id_empresa]);
-            console.log('CONEXIÓN POR CONSULTA DB1');
+            console.log('CONEXIÓN POR CONSULTA fDB1');
 
             return await createPool({
                 host: rows[0]['host_db'],
