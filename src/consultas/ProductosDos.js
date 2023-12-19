@@ -10,6 +10,7 @@ const explode_filtros_globales_v2 = require('../funcion/funciones.js');
             if (isConditionTrue) {
             
             if (isConditionTrue) {
+            var empresa = parseInt(req.body.empresa)
             var fn_id_producto = req.body.fn_id_producto || ''
             var fn_id_sucursal = parseInt(req.body.fn_id_sucursal) || ''
             var fn_offset = parseInt(req.body.fn_offset) || ''
