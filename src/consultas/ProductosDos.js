@@ -1,4 +1,5 @@
 const bd_conexion = require("../conexion/bd_conexion");
+import { fn_conexion } from '../../src/conexion/NewConexion.js'
 const explode_filtros_globales_v2 = require('../funcion/funciones.js'); 
     
     async function productos_dos(req, res) {
