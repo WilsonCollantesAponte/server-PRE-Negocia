@@ -42,9 +42,11 @@ exports.fn_conexion = async (req, res, id_empresa) => {
             });
         }
     } catch (error) {
-    console.error("Error in fn_conexion:", error.message);
-    throw new Error("Something went wrong in fn_conexion");
-  }
+        console.error(`Error en fn_principal_producto: ${error.message}`);
+        console.error(error.stack); // Imprime la pila de llamadas
+        throw new Error(`Something went wrong in fn_principal_producto: ${error.message}`);
+      
+    }
 };
 
 exports.conn = async () => {
