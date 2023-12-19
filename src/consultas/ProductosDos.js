@@ -1181,7 +1181,7 @@ var conn_empresa = await fn_conexion(req, res, empresa)
                 console.error('Error en tuFuncion:', error);
 
                 // Puedes ajustar el mensaje de error según tus necesidades
-                return res.status(500).json({ message: `Algo salió mal: fn_principal_producto. Detalles del error 1234:  ${error.message}` });
+                return res.status(500).json({ message: `Algo salió mal: productos_dos. Detalles del error 1235:  ${error.message, tabla_final}` });
               
             }
     }
