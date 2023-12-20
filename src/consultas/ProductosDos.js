@@ -1176,9 +1176,7 @@ const explode_filtros_globales_v2 = require('../funcion/funciones.js');
             
             //var [rows] = await conn_empresa.query(tabla_final)
             //res.json(rows)
-            const consultaFormateada = tabla_final.replace(/\s+/g, ' ').trim();
-            res.status(200).json({ message: `Ver consulta:\n${consultaFormateada}` });
-
+            res.status(200).json({ message: `ver consulta:  ${tabla_final}` });
             } catch (error) {
                 console.error('Error en tuFuncion:', error);
 
