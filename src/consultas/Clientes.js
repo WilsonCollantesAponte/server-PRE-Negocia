@@ -3,7 +3,7 @@ const bd_conexion = require("../conexion/bd_conexion");
 async function cliente(req, res) {
   const { empresa, id_empresa, valor_texto_busqueda } = req.body;
   const con = bd_conexion([id_empresa]);
-  console.log("Datos recibidos:", { empresa, id_empresa, valor_texto_busqueda });
+
   try {
     const dataCliente = await new Promise((resolve, reject) => {
       const likeValue = `%${valor_texto_busqueda}%`; // Variable para evitar repetir la lógica del LIKE
