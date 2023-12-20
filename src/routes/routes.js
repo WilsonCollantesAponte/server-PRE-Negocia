@@ -38,4 +38,7 @@ router.post("/fn_productos", controller.fn_principal_producto);
 // Ruta de Productos
 router.post("/productos_dos", controller.productos_dos);
 
+// Ruta de unidad
+router.post("/unidad_medida", controller.unidad_medida);
+
 module.exports = router;
