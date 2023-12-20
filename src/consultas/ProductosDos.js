@@ -7,7 +7,7 @@ const explode_filtros_globales_v2 = require('../funcion/funciones.js');
         try {
             var isConditionTrue = true
             var empresa = parseInt(req.body.empresa)
-var conn_empresa = await fn_conexion(req, res, empresa)
+            var conn_empresa = await fn_conexion(req, res, empresa)
            // var id_empresa = parseInt(req.body.id_bd)
             //const conn_empresa = bd_conexion([id_empresa]);
             //FILTROS
@@ -1176,7 +1176,9 @@ var conn_empresa = await fn_conexion(req, res, empresa)
             
             //var [rows] = await conn_empresa.query(tabla_final)
             //res.json(rows)
-            res.status(200).json({ message: `ver consulta:  ${tabla_final}` });
+            const consultaFormateada = tabla_final.replace(/\s+/g, ' ').trim();
+            res.status(200).json({ message: `Ver consulta:\n${consultaFormateada}` });
+
             } catch (error) {
                 console.error('Error en tuFuncion:', error);
 
