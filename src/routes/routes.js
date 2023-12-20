@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const controller = require("../controller/controlles");
-const bd_conexion = require("../conexion/bd_conexion");
 
 // Otras importaciones necesarias
 // Ruta de login
@@ -31,9 +30,6 @@ router.post("/correlativo", controller.correlativo);
 
 // Ruta de Clientes
 router.post("/clientes", controller.clientes);
-
-// Ruta de Productos
-router.post("/fn_productos", controller.fn_principal_producto);
 
 // Ruta de Productos
 router.post("/productos_dos", controller.productos_dos);
