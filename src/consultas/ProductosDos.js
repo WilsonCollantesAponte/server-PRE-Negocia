@@ -1174,8 +1174,8 @@ var conn_empresa = await fn_conexion(req, res, empresa)
             }
             
             
-            var [rows] = await conn_empresa.query(tabla_final)
-            res.json(rows)
+            //var [rows] = await conn_empresa.query(tabla_final)
+            //res.json(rows)
             res.status(200).json({ message: `ver consulta:  ${tabla_final}` });
             } catch (error) {
                 console.error('Error en tuFuncion:', error);
