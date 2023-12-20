@@ -7,7 +7,7 @@ async function unidad_medida(req, res) {
   try {
     const dataunidad_medido = await new Promise((resolve, reject) => {
       con.query(
-        `SELECT id, nombre FROM unidadm WHERE id != 36 AND id_pais = 1 ORDER BY nombre ASC `,
+        `SELECT id, nombre FROM unidadm WHERE id != 36 AND pais = 1 ORDER BY nombre ASC `,
         
         function (err, dataunidad_medido) {
           if (err) {
