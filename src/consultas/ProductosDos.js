@@ -1176,7 +1176,8 @@ const explode_filtros_globales_v2 = require('../funcion/funciones.js');
             
             
             var [rows] = await conn_empresa.query(tabla_final)
-            res.json(rows)
+            es.status(200).json(rows);
+            //res.json(rows)
             //res.status(200).json({ message: `ver consulta:  ${tabla_final}` });
              // Libera la conexión después de la consulta
             conn_empresa.release();
