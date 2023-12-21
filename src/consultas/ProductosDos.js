@@ -1,5 +1,5 @@
 //const bd_conexion = require("../conexion/bd_conexion");
-const { fn_conexion } = require('../../src/conexion/NewConexion.js');
+const { conn  } = require('../../src/conexion/NewConexion.js');
 
 const explode_filtros_globales_v2 = require('../funcion/funciones.js'); 
     
@@ -7,7 +7,7 @@ const explode_filtros_globales_v2 = require('../funcion/funciones.js');
         try {
             var isConditionTrue = true
             var empresa = parseInt(req.body.empresa)
-            const conn_empresa = await fn_conexion(req, res, empresa);
+            const conn_empresa = await conn(req, res, empresa);
            // var id_empresa = parseInt(req.body.id_bd)
             //const conn_empresa = bd_conexion([id_empresa]);
             //FILTROS
