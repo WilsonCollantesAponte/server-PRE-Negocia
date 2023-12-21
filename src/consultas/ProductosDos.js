@@ -1,5 +1,5 @@
 //const bd_conexion = require("../conexion/bd_conexion");
-const { conn  } = require('../../src/conexion/NewConexion.js');
+const { fn_conexion } = require('../../src/conexion/NewConexion.js');
 
 const explode_filtros_globales_v2 = require('../funcion/funciones.js'); 
     
@@ -7,7 +7,7 @@ const explode_filtros_globales_v2 = require('../funcion/funciones.js');
         try {
             var isConditionTrue = true
             var empresa = parseInt(req.body.empresa)
-            const conn_empresa = await conn(req, res, empresa);
+            const conn_empresa = await fn_conexion(req, res, empresa);
            // var id_empresa = parseInt(req.body.id_bd)
             //const conn_empresa = bd_conexion([id_empresa]);
             //FILTROS
@@ -1185,8 +1185,8 @@ const explode_filtros_globales_v2 = require('../funcion/funciones.js');
                 console.error('Error en tuFuncion:', error);
 
                 // Puedes ajustar el mensaje de error según tus necesidades
-                //return res.status(500).json({ message: `Algo salió mal: productos_dos. Detalles del error 1235:  ${error.message, tabla_final}` });
-                return res.status(500).json({ message: `Algo salió mal: productos_dos. Detalles del error 1235:  ${error.message}` });
+                return res.status(500).json({ message: `Algo salió mal: productos_dos. Detalles del error 1235:  ${error.message, tabla_final}` });
+              
             }
     }
 
