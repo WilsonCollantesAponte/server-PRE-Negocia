@@ -62,8 +62,5 @@ exports.conn = async () => {
     }
   };
 
-  return {
-    query: connection.query.bind(connection),
-    release: connection.release.bind(connection)
-  };
+  return connection;
 };
