@@ -14,7 +14,6 @@ const explode_filtros_globales_v2 = require('../funcion/funciones.js');
             if (isConditionTrue) {
             
             if (isConditionTrue) {
-            var EC2_BUCKET_S3 = 'negslat';    
             var empresa = parseInt(req.body.empresa)
             var fn_id_producto = req.body.fn_id_producto || ''
             var fn_id_sucursal = parseInt(req.body.fn_id_sucursal) || ''
@@ -487,8 +486,8 @@ const explode_filtros_globales_v2 = require('../funcion/funciones.js');
             tb_products.descripcion AS DESCRIPCION_PRODUCTO,
             tb_products.inventariable AS INVENTARIABLE_PRODUCTO,
             tb_flujocaja2.subcategoria AS CUENTA_PRODUCTO,
-            CASE WHEN tb_products.foto = '' THEN 'https://${EC2_BUCKET_S3}-img-producto.s3.amazonaws.com/${img_default}'  
-            ELSE CONCAT('https://${EC2_BUCKET_S3}-img-producto.s3.amazonaws.com/', tb_products.foto) END AS FOTO_PRODUCTO,
+            CASE WHEN tb_products.foto = '' THEN 'https://${empresa}-img-producto.s3.amazonaws.com/${img_default}'  
+            ELSE CONCAT('https://${empresa}-img-producto.s3.amazonaws.com/', tb_products.foto) END AS FOTO_PRODUCTO,
             CASE WHEN tb_products.inventariable = '1' THEN 'Producto Inventariable' ELSE 'No Inventariable' END AS TEXTO_INVENTARIABLE,
             ROUND(tb_producto_almacen.stock_minimo, 3) AS STOCK_MINIMO,
             tb_movimiento_inventario.cantidad AS STOCK_INICIAL,
@@ -1176,11 +1175,9 @@ const explode_filtros_globales_v2 = require('../funcion/funciones.js');
             
             
             var [rows] = await conn_empresa.query(tabla_final)
-            es.status(200).json(rows);
-            //res.json(rows)
+            res.json(rows)
             //res.status(200).json({ message: `ver consulta:  ${tabla_final}` });
-             // Libera la conexión después de la consulta
-            conn_empresa.release();
+            conn_empresa.value.end();// cerrar conexion
             } catch (error) {
                 console.error('Error en tuFuncion:', error);
 
