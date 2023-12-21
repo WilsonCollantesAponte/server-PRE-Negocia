@@ -1185,7 +1185,9 @@ const explode_filtros_globales_v2 = require('../funcion/funciones.js');
                 // Puedes ajustar el mensaje de error según tus necesidades
                 return res.status(500).json({ message: `Algo salió mal: productos_dos. Detalles del error 1235:  ${error.message, tabla_final}` });
               
-            }
+            }finally {
+                conn_empresa.release(); // Siempre libera la conexión cuando hayas terminado
+              }
     }
 
     module.exports = productos_dos;
