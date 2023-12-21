@@ -12,9 +12,9 @@ const pool = createPool({
 });
 
 exports.fn_conexion = async (req, res, id_empresa) => {
-    try {
+  try {
         if (req.session && req.session.DB_USER && req.session.DB_PASSWORD &&
-    req.session.DB_HOST && req.session.DB_DATABASE) {
+            req.session.DB_HOST && req.session.DB_DATABASE) {
             console.log('CONEXIÓN POR SESIÓN');
             return await createPool({
                 host: req.session.DB_HOST,
@@ -42,15 +42,27 @@ exports.fn_conexion = async (req, res, id_empresa) => {
             });
         }
     } catch (error) {
-        console.error(`Error en fn_principal_producto: ${error.message}`);
-        console.error(error.stack); // Imprime la pila de llamadas
-        throw new Error(`Something went wrong in fn_principal_producto: ${error.message}`);
-      
-    }
+    console.error(`Error in fn_principal_producto: ${error.message}`);
+    console.error(error.stack);
+    throw new Error(`Something went wrong in fn_principal_producto: ${error.message}`);
+  }
 };
 
 exports.conn = async () => {
   const connection = await pool.getConnection();
+
+  // Modify the release function to ensure proper release
+  const originalRelease = connection.release.bind(connection);
+  connection.release = () => {
+    // Release the connection
+    originalRelease();
+
+    // If the pool is empty, close the pool after releasing the connection
+    if (pool._allConnections.length === 0 && pool._freeConnections.length === 0) {
+      pool.end();
+    }
+  };
+
   return {
     query: connection.execute.bind(connection),
     release: connection.release.bind(connection)
