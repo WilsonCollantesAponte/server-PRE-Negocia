@@ -16,7 +16,7 @@ ON ( almacen_serie.serie = numero_serie.id and numero_serie.tipo = ? AND numero_
 LEFT JOIN serie_asignados
 ON ( serie_asignados.id_serie = numero_serie.id AND serie_asignados.empresa = almacen_serie.empresa AND serie_asignados.id_usuario = ?
 AND serie_asignados.id_almacen = almacen_serie.almacen AND serie_asignados.estado = 1) 
-WHERE almacen_serie.almacen = ? and almacen_serie.empresa = 1
+WHERE almacen_serie.almacen = ? and almacen_serie.empresa = ?
 `,
         [tipo_serie, IDUSUARIO, id_almacen, empresa],
         function (err, dataSerie) {
