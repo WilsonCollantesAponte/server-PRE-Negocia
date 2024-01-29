@@ -3,7 +3,7 @@
 const mysql = require("mysql2");
 
 const dbConfig = {
-  host: "database-4.ck6ibo6sc49a.us-east-1.rds.amazonaws.com",
+  host: "database-4.c5cwec6scauz.us-east-1.rds.amazonaws.com",
   port: "3306",
   user: "admin",
   password: "negocialabsackeyy4",
