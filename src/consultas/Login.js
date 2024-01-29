@@ -116,11 +116,14 @@ async function login(req, res) {
       passwordIsCorrect,
       userData: results[0]
     });
+    console.log("Contraseña Almacenada en Hash:", results[0].clave);
+
     con.close(); //cerrar conexion
   } catch (error) {
     console.error("Error en la consulta a la base de datos:", error);
     res.status(500).json({
       error: "Hubo un error en la consulta a la base de datos",
+      detalles: error.message
     });
   }
 }
