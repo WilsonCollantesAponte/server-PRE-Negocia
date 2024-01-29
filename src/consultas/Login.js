@@ -41,7 +41,7 @@ async function login(req, res) {
           tb_perfil.fecha AS labsac_empresa_fecha_inicio,
           tb_perfil.fechavencimiento AS labsac_empresa_fecha_vencimiento,
           tb_perfil.facturacion AS labsac_empresa_facturacion,
-          tb_perfil.tipo_facturacion AS labsac_empresa_tipo_facturacion,
+          '' AS labsac_empresa_tipo_facturacion,
           tb_perfil.user_cpe AS labsac_empresa_user_cpe,
           tb_perfil.pass_cpe AS labsac_empresa_pass_cpe,
           tb_perfil.id_cpe AS labsac_empresa_cert_cpe,
